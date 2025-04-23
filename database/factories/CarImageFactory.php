@@ -17,7 +17,7 @@ class CarImageFactory extends Factory
     public function definition(): array
     {
         return [
-            'image_path' => fake()->imageUrl(),
+            'image_path' => 'https://dummyimage.com/640x480/0000cc/ffffff&text=' . urlencode(fake()->word),
             'position' => function(array $attributes) {
                 return \App\Models\Car::find($attributes['car_id'])->images()->count() + 1;
             },
