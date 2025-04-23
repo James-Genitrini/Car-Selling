@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-
+use Database\Factories\CarFeaturesFactory;
 class CarFeatures extends Model
 {
     use HasFactory;
@@ -39,6 +39,6 @@ class CarFeatures extends Model
 
     protected static function newFactory()
     {
-        return \Database\Factories\CarFeaturesFactory::new();
+        return CarFeaturesFactory::new();
     }
 }
