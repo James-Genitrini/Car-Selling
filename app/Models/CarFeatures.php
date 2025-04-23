@@ -36,4 +36,9 @@ class CarFeatures extends Model
     {
         return $this->belongsTo(Car::class, 'car_id');
     }
+
+    protected static function newFactory()
+    {
+        return \Database\Factories\CarFeaturesFactory::new();
+    }
 }

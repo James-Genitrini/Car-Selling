@@ -152,6 +152,16 @@ class HomeController extends Controller
         // $user->favouriteCars()->attach([3, 4]);
 
         
+        // $makers = Maker::factory()->count(10)->create();
+        // dd($makers);
+
+        // User::factory()->create([
+        //     'name' => 'Kevin',
+        // ]);
+
+        // User::factory()->count(10)->unverified()->create();
+
+        Maker::factory()->count(5)->has->create();
         return view('home.index');
     }
 }
