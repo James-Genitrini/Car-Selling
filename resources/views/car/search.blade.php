@@ -37,7 +37,7 @@
                 </div>
     
                 <!-- Find a car form -->
-                <section class="find-a-car">
+                {{-- <section class="find-a-car">
                   <form action="/s.html" method="GET" class="find-a-car-form card flex p-medium">
                     <div class="find-a-car-inputs">
                       <div class="form-group">
@@ -403,7 +403,133 @@
                       </button>
                     </div>
                   </form>
+                </section> --}}
+                <section class="find-a-car">
+                  <form action="{{ route('car.search') }}" method="GET" class="find-a-car-form card flex p-medium">
+                    <div class="find-a-car-inputs">
+                      <!-- Filtre par Marque -->
+                      <div class="form-group">
+                        <label class="mb-medium">Maker</label>
+                        <select id="makerSelect" name="maker_id">
+                          <option value="">Maker</option>
+                          @foreach ($makers as $maker)
+                            <option value="{{ $maker->id }}" {{ old('maker_id', $filters['maker_id'] ?? '') == $maker->id ? 'selected' : '' }}>
+                              {{ $maker->name }}
+                            </option>
+                          @endforeach
+                        </select>
+                      </div>
+                
+                      
+                      <!-- Filtre par Modèle -->
+                      <div class="form-group">
+                        <label class="mb-medium">Model</label>
+                        <select id="modelSelect" name="model_id">
+                          <option value="">Model</option>
+                          @foreach ($models as $model)
+                            <option value="{{ $model->id }}" data-parent="{{ $model->maker_id }}" {{ old('model_id', $filters['model_id'] ?? '') == $model->id ? 'selected' : '' }}>
+                              {{ $model->name }}
+                            </option>
+                          @endforeach
+                        </select>
+                      </div>
+                
+                      <!-- Filtre par Type -->
+                      <div class="form-group">
+                        <label class="mb-medium">Type</label>
+                        <select name="car_type_id">
+                          <option value="">Type</option>
+                          @foreach ($carTypes as $carType)
+                            <option value="{{ $carType->id }}" {{ old('car_type_id', $filters['car_type_id'] ?? '') == $carType->id ? 'selected' : '' }}>
+                              {{ $carType->name }}
+                            </option>
+                          @endforeach
+                        </select>
+                      </div>
+                
+                      <!-- Filtre par Année -->
+                      <div class="form-group">
+                        <label class="mb-medium">Year</label>
+                        <div class="flex gap-1">
+                          <input type="number" placeholder="Year From" name="year_from" value="{{ old('year_from', $filters['year_from'] ?? '') }}">
+                          <input type="number" placeholder="Year To" name="year_to" value="{{ old('year_to', $filters['year_to'] ?? '') }}">
+                        </div>
+                      </div>
+                
+                      <!-- Filtre par Prix -->
+                      <div class="form-group">
+                        <label class="mb-medium">Price</label>
+                        <div class="flex gap-1">
+                          <input type="number" placeholder="Price From" name="price_from" value="{{ old('price_from', $filters['price_from'] ?? '') }}">
+                          <input type="number" placeholder="Price To" name="price_to" value="{{ old('price_to', $filters['price_to'] ?? '') }}">
+                        </div>
+                      </div>
+                
+                      <!-- Filtre par Kilométrage -->
+                      <div class="form-group">
+                        <label class="mb-medium">Mileage</label>
+                        <div class="flex gap-1">
+                          <select name="mileage">
+                            <option value="">Any Mileage</option>
+                            <option value="10000" {{ old('mileage', $filters['mileage'] ?? '') == '10000' ? 'selected' : '' }}>10,000 or less</option>
+                            <option value="20000" {{ old('mileage', $filters['mileage'] ?? '') == '20000' ? 'selected' : '' }}>20,000 or less</option>
+                            <!-- Ajoute d'autres options si nécessaire -->
+                          </select>
+                        </div>
+                      </div>
+                
+                      <!-- Filtre par État -->
+                      <div class="form-group">
+                        <label class="mb-medium">State</label>
+                        <select name="state_id">
+                          <option value="">State/Region</option>
+                          @foreach ($states as $state)
+                            <option value="{{ $state->id }}" {{ old('state_id', $filters['state_id'] ?? '') == $state->id ? 'selected' : '' }}>
+                              {{ $state->name }}
+                            </option>
+                          @endforeach
+                        </select>
+                      </div>
+                
+                      <!-- Filtre par Ville -->
+                      <div class="form-group">
+                        <label class="mb-medium">City</label>
+                        <select id="citySelect" name="city_id">
+                          <option value="">City</option>
+                          @foreach ($cities as $city)
+                            <option value="{{ $city->id }}" {{ old('city_id', $filters['city_id'] ?? '') == $city->id ? 'selected' : '' }}>
+                              {{ $city->name }}
+                            </option>
+                          @endforeach
+                        </select>
+                      </div>
+                
+                      <!-- Filtre par Type de carburant -->
+                      <div class="form-group">
+                        <label class="mb-medium">Fuel Type</label>
+                        <select name="fuel_type_id">
+                          <option value="">Fuel Type</option>
+                          @foreach ($fuelTypes as $fuelType)
+                            <option value="{{ $fuelType->id }}" {{ old('fuel_type_id', $filters['fuel_type_id'] ?? '') == $fuelType->id ? 'selected' : '' }}>
+                              {{ $fuelType->name }}
+                            </option>
+                          @endforeach
+                        </select>
+                      </div>
+                    </div>
+                
+                    <div class="flex">
+                      <button type="button" class="btn btn-find-a-car-reset" onclick="window.location.href='{{ route('car.search') }}'">
+                        Reset
+                      </button>
+                      <button class="btn btn-primary btn-find-a-car-submit">
+                        Search
+                      </button>
+                    </div>
+                  </form>
                 </section>
+                
+              
                 <!--/ Find a car form -->
               </div>
     
@@ -421,4 +547,3 @@
         <!--/ Found Cars -->
       </main>
     </x-app-layout>
-
