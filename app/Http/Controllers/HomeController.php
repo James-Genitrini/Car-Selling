@@ -161,7 +161,8 @@ class HomeController extends Controller
 
         // User::factory()->count(10)->unverified()->create();
 
-        Maker::factory()->count(5)->has->create();
+        // Maker::factory()->count(5)->hasModels(5)->create();
+
         return view('home.index');
     }
 }
