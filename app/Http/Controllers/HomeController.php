@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Car;
 use App\Models\CarFeatures;
+use App\Models\User;
 use App\Models\CarType;
 use App\Models\Maker;
 use App\Models\CarImage;
@@ -126,11 +127,31 @@ class HomeController extends Controller
 
         // dd($car->carType);
 
-        $carType = CarType::where('name', 'Sendan')->first();
+        // $carType = CarType::where('name', 'Hatchback')->first();
 
-        $cars = Car::whereBelongsTo($carType)->get();
+        // $cars = $carType->cars;
+        // $cars = Car::whereBelongsTo($carType)->get();
 
-        dd($cars);
+        // dd($cars);
+
+        // $car = Car::find(1);
+
+        // $car->car_type_id = $carType->id;
+        // $car->save();
+
+        // $car->carType()->associate($carType);
+        // $car->save();
+
+        // $car = Car::find(1);
+        // dd($car->favouredUser);
+
+        // $user = User::find(1);
+        // dd($user->favouriteCars);
+
+        // $user = User::find(1);
+        // $user->favouriteCars()->attach([3, 4]);
+
+        
         return view('home.index');
     }
 }
