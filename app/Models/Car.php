@@ -80,4 +80,9 @@ class Car extends EloquentModel
     {
         return $this->belongsToMany(User::class, 'favourite_cars', 'car_id', 'user_id');
     }
+
+    public function getCreateDate(): string
+    {
+        return (new \Carbon\Carbon($this->created_at))->format('Y-m-d');
+    }
 }
