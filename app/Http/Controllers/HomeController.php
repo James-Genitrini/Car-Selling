@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Car;
+use App\Models\CarFeatures;
+use App\Models\CarType;
 use App\Models\Maker;
+use App\Models\CarImage;
 use App\Models\FuelType;
 use Illuminate\Http\Request;
 
@@ -65,8 +69,68 @@ class HomeController extends Controller
         // $car->save();
 
         // Delete car id 2
-        $cars = Car::destroy(5);
+        // $cars = Car::destroy(ids: 5);
+
+        // $car = Car::find(1);
+
+        // dd($car->features, $car->primaryImage);
+
+        // $car->features->abs =0;
+        // $car->features->save();
+
+        $car = Car::find(2);
+
+        $carFeatures = new CarFeatures([
+            'abs' => false,
+            'air_conditioning' => false,
+            'power_windows' => false,
+            'power_door_locks' => false,
+            'cruise_control' => false,
+            'bluetooth_connectivity' => false,
+            'remote_start' => false,
+            'gps_navigation' => false,
+            'heater_seats' => false,
+            'climate_control' => false,
+            'rear_parking_sensors' => false,
+            'leather_seats' => false,
+        ]);
+
+        // $car->features()->save($carFeatures);
+
+        $car = Car::find(1);
+        // dd($car->images);
         
+        // $image = new CarImage([
+        //     'image_path' => 'path/to/image.jpg',
+        //     'position' => 3,
+        // ]);
+        // $car->images()->save($image);
+
+        // $car->images()->saveMany([
+        //     new CarImage([
+        //         'image_path' => 'path/to/image.jpg',
+        //         'position' => 4,
+        //     ]),
+        //     new CarImage([
+        //         'image_path' => 'path/to/image.jpg',
+        //         'position' => 5,
+        //     ])
+        // ]);
+
+        // $car->images()->createMany([
+        //     ['image_path' => 'something', 'position' => 6],
+        //     ['image_path' => 'something', 'position' => 7],
+        // ]);
+
+        // $car = Car::find(1);
+
+        // dd($car->carType);
+
+        $carType = CarType::where('name', 'Sendan')->first();
+
+        $cars = Car::whereBelongsTo($carType)->get();
+
+        dd($cars);
         return view('home.index');
     }
 }

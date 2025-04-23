@@ -13,6 +13,8 @@ class CarFeatures extends Model
 
     public $timestamps = false;
 
+    protected $table = 'cars_features';
+
     protected $fillable = [
         'car_id',
         'abs',
