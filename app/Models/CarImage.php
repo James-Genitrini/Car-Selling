@@ -3,16 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class City extends Model
+class CarImage extends Model
 {
     use HasFactory;
+    use Illuminate\Database\Eloquent\Factories\HasFactory;
 
     public $timestamps = false;
 
     protected $fillable = [
-        'name',
-        'state_id'
+        'image_path',
+        'position'
     ];
 }

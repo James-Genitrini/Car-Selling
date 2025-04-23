@@ -19,6 +19,7 @@ class Car extends Model
         'mileage',
         'car_type_id',
         'fuel_type_id',
+        'user_id',
         'city_id',
         'address',
         'phone',
