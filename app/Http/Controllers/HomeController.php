@@ -8,6 +8,7 @@ use App\Models\CarFeatures;
 use App\Models\User;
 use App\Models\CarType;
 use App\Models\Maker;
+use App\Models\Model;
 use App\Models\CarImage;
 use App\Models\FuelType;
 use Illuminate\Http\Request;
@@ -162,6 +163,14 @@ class HomeController extends Controller
         // User::factory()->count(10)->unverified()->create();
 
         // Maker::factory()->count(5)->hasModels(5)->create();
+
+        // $maker = Maker::factory()->create();
+
+        // Model::factory()->count(5)
+        // ->for($maker)
+        // ->forMaker(['name' => 'Lexus'])
+        // ->for(Maker::factory()->state(['name' => 'Lexus']))
+        // ->create();
 
         return view('home.index');
     }
