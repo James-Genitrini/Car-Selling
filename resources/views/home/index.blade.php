@@ -97,16 +97,9 @@
     <div class="container">
       <h2>Latest Added Cars</h2>
       <div class="car-items-listing">
-        @for($i = 0; $i < 15; $i++)
-          <x-car-item
-            {{-- image="./img/cars/Lexus-RX200t-2016/1.jpeg"
-            title="2016 - Lexus RX200t"
-            price="$25,000"
-            location="New Jersey"
-            type="SUV"
-            fuel="Electric" --}}
-          />
-        @endfor
+        @foreach($cars as $car)
+          <x-car-item :$car/>
+        @endforeach
       </div>
     </div>
   </section>
